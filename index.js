@@ -193,3 +193,51 @@ try {
 } catch (error) {
   console.error(`Could not get products: ${error}`);
 }
+
+/*Write a JavaScript program that converts a callback-based 
+function to a Promise
+-based function.*/
+
+function greet(person, callback) {
+  console.log(`Hello ${person}`);
+  callback();
+}
+
+function Later() {
+  console.log(`Later`);
+}
+
+greet(`Duncan`);
+
+// as an arrow function
+
+const greet = (person, callback) => {
+  console.log(`Hello ${person}`);
+  callback();
+};
+
+const Later = () => {
+  console.log(`Later`);
+};
+
+greet(`Duncan`);
+
+//as a promise
+
+const greet = (person, callback) => {
+  return new Promise((resolve, reject) => {
+    console.log(`Hello ${person}`);
+    resolve();
+  });
+};
+
+const Later = () => {
+  return new Promise((resolve, reject) => {
+    console.log("Later");
+    resolve();
+  });
+};
+
+greet("Sally")
+  .then(Later)
+  .catch((error) => console.log(error));
